@@ -1,0 +1,25 @@
+kind: DeploymentConfig
+apiVersion: v1
+metadata:
+  name: react
+spec:
+  template:
+    metadata:
+      labels:
+        name: react
+    spec:
+      securityContext:
+      containers:
+        - name: react
+          image: react:lastest
+          ports:
+            - containerPort: 6010
+              protocol: TCP
+  replicas: 1
+  selector:
+   name: react
+  triggers:
+   - type: ConfigChange
+  strategy:
+   type: Rolling
+
